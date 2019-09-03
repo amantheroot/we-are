@@ -8,6 +8,9 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const flash = require('connect-flash');
 const session = require('express-session');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const app = express();
 
@@ -25,6 +28,12 @@ mongoose
   )
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.log(err));
+
+
+// Logging requests
+app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(cors());
 
 // EJS
 app.use(expressLayouts);
@@ -60,6 +69,19 @@ app.use((req, res, next) => {
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
+
+// Handling Errors
+app.use((req, res, next) => {
+  res.render('notfound');
+});
+
+app.use((error, req, res, next) => {
+  res.status(error.status || 500).json({
+    error: {
+      message: error.message
+    }
+  });
+});
 
 const PORT = process.env.PORT || 5000;
 
