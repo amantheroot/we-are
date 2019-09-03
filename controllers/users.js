@@ -66,7 +66,9 @@ exports.users_post_register = (req, res) => {
         const newUser = new User({
           name,
           email,
-          password
+          password,
+          type: null,
+          userInfo: {}
         });
 
         bcrypt.genSalt(10, (err, salt) => {
