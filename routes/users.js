@@ -5,6 +5,9 @@ const { forwardAuthenticated } = require('../config/auth');
 
 const UsersController = require('../controllers/users');
 
+// Get All Users
+router.get('/', UsersController.users_get_index);
+
 // Login Page
 router.get('/login', forwardAuthenticated, UsersController.users_get_login);
 

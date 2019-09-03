@@ -3,6 +3,23 @@ const passport = require('passport');
 // Load User model
 const User = require('../models/user');
 
+// Get All Users
+exports.users_get_index = (req, res) => {
+  User.find()
+    .select('name email date')
+    .exec()
+    .then(docs => {
+      res.status(200).json({
+        count: docs.length,
+        users: docs
+      });
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: err.message });
+    });
+};
+
 // Login Page
 exports.users_get_login = (req, res) => res.render('login');
 
