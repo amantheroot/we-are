@@ -21,10 +21,10 @@ exports.users_get_index = (req, res) => {
 };
 
 // Login Page
-exports.users_get_login = (req, res) => res.render('login');
+exports.users_get_login = (req, res) => res.render('users/login');
 
 // Register Page
-exports.users_get_register = (req, res) => res.render('register');
+exports.users_get_register = (req, res) => res.render('users/register');
 
 // Register
 exports.users_post_register = (req, res) => {
@@ -44,7 +44,7 @@ exports.users_post_register = (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render('register', {
+    res.render('users/register', {
       errors,
       name,
       email,
@@ -55,7 +55,7 @@ exports.users_post_register = (req, res) => {
     User.findOne({ email: email }).then(user => {
       if (user) {
         errors.push({ msg: 'Email already exists' });
-        res.render('register', {
+        res.render('users/register', {
           errors,
           name,
           email,

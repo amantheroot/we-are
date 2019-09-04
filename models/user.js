@@ -17,13 +17,14 @@ const UserSchema = new mongoose.Schema({
     type: String
   },
   userInfo: {
-    type: Object
+    type: mongoose.Schema.Types.Mixed,
+    default: {}
   },
   date: {
     type: Date,
     default: Date.now
   }
-});
+}, { minimize: false });
 
 const User = mongoose.model('User', UserSchema);
 
