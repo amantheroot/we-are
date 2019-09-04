@@ -107,3 +107,24 @@ exports.users_get_logout = (req, res) => {
   req.flash('success_msg', 'You are logged out');
   res.redirect('/users/login');
 };
+
+// Ser User Type
+exports.users_get_setType = (req, res) => {
+  if (req.params.type === "applicant" || req.params.type === "employer") {
+    if (req.user.type === "applicant" || req.user.type === "employer") {
+      res.redirect('/dashboard');
+    } else {
+      User.findByIdAndUpdate(req.user.id, { $set: { type: req.params.type } })
+        .exec()
+        .then(result => {
+          res.redirect('/dashboard');
+        })
+        .catch(err => {
+          console.error(err);
+          res.status(500).json({ error: err.message });
+        });
+    }
+  } else {
+    res.render('notfound');
+  }
+};

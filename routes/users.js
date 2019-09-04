@@ -23,4 +23,7 @@ router.post('/login', UsersController.users_post_login);
 // Logout
 router.get('/logout', UsersController.users_get_logout);
 
+// Set User Type
+router.get('/setType/:type', UsersController.users_get_setType);
+
 module.exports = router;
