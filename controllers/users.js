@@ -128,3 +128,16 @@ exports.users_get_setType = (req, res) => {
     res.render('notfound');
   }
 };
+
+// Ser User Info
+exports.users_post_userInfo = (req, res) => {
+  User.findByIdAndUpdate(req.user.id, { $set: { userInfo: req.body } })
+    .exec()
+    .then(result => {
+      res.redirect('/dashboard');
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: err.message });
+    });
+};

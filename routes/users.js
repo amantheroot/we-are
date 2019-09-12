@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // Load User model
-const { forwardAuthenticated } = require('../config/auth');
+const { forwardAuthenticated, ensureAuthenticated } = require('../config/auth');
 
 const UsersController = require('../controllers/users');
 
@@ -24,6 +24,9 @@ router.post('/login', UsersController.users_post_login);
 router.get('/logout', UsersController.users_get_logout);
 
 // Set User Type
-router.get('/setType/:type', UsersController.users_get_setType);
+router.get('/setType/:type', ensureAuthenticated, UsersController.users_get_setType);
+
+// Set User Info
+router.post('/userInfo', UsersController.users_post_userInfo);
 
 module.exports = router;
