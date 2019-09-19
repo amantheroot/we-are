@@ -3,7 +3,7 @@ const passport = require('passport');
 // Load User model
 const User = require('../models/user');
 
-const { verifyPass } = require('./config/keys');
+const { verifyPass } = require('../config/keys');
 
 // Get All Users
 exports.users_get_index = (req, res) => {
