@@ -1,1 +1,28 @@
 <h1>Employer Form</h1>
+<form action="users/userInfo" method="POST">
+  <div>
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="<%= user.name %>" disabled>
+  </div>
+  <div>
+    <label for="mobile">Mobile:</label>
+    <input type="text" name="mobile" id="mobile" required>
+  </div>
+  <div>
+    <label for="company_name">Company Name:</label>
+    <input type="text" name="company_name" id="company_name" required>
+  </div>
+  <div>
+    <label for="company_email">Company Email:</label>
+    <input type="text" name="company_email" id="company_email" required>
+  </div>
+  <div>
+    <label for="company_mobile">Company Mobile:</label>
+    <input type="text" name="company_mobile" id="company_mobile" required>
+  </div>
+  <div>
+    <label for="company_address">Company Address:</label>
+    <textarea type="text" name="company_address" id="company_address" required></textarea>
+  </div>
+  <input type="submit" value="Submit">
+</form>

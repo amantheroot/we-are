@@ -1,8 +1,28 @@
 <h1>Applicant Form</h1>
 <form action="users/userInfo" method="POST">
   <div>
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="<%= user.name %>" disabled>
+  </div>
+  <div>
+    <label for="mobile">Mobile:</label>
+    <input type="text" name="mobile" id="mobile" required>
+  </div>
+  <div>
+    <label for="address">Address:</label>
+    <textarea type="text" name="address" id="address" required></textarea>
+  </div>
+  <div>
+    <label for="education">Education:</label>
+    <textarea type="text" name="education" id="education" required></textarea>
+  </div>
+  <div>
+    <label for="skills">Skills:</label>
+    <textarea type="text" name="skills" id="skills" required></textarea>
+  </div>
+  <div>
+    <label for="about">About Yourself:</label>
+    <textarea type="text" name="about" id="about" required></textarea>
   </div>
   <input type="submit" value="Submit">
 </form>

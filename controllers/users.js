@@ -131,7 +131,13 @@ exports.users_get_setType = (req, res) => {
 
 // Ser User Info
 exports.users_post_userInfo = (req, res) => {
-  User.findByIdAndUpdate(req.user.id, { $set: { userInfo: req.body } })
+  let setProps = {
+    userInfo: req.body
+  };
+  if (req.user.type === "employer") {
+    setProps.userInfo.verified = false;
+  }
+  User.findByIdAndUpdate(req.user.id, { $set: setProps })
     .exec()
     .then(result => {
       res.redirect('/dashboard');
