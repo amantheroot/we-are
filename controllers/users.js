@@ -3,6 +3,8 @@ const passport = require('passport');
 // Load User model
 const User = require('../models/user');
 
+const { verifyPass } = require('./config/keys');
+
 // Get All Users
 exports.users_get_index = (req, res) => {
   User.find()
@@ -146,4 +148,23 @@ exports.users_post_userInfo = (req, res) => {
       console.error(err);
       res.status(500).json({ error: err.message });
     });
+};
+
+// Verify User
+exports.users_post_verifyUser = (req, res) => {
+  if (req.body.password !== verifyPass ) {
+    res.status(401).json({
+      message: "Auth Failed"
+    });
+  } else {
+    User.findByIdAndUpdate(req.body.userId, { "userInfo.verified": true })
+      .exec()
+      .then(result => {
+        res.status(200).json({ message: "User Verified!" });
+      })
+      .catch(err => {
+        console.error(err);
+        res.status(500).json({ error: err.message });
+      })
+  }
 };

@@ -29,4 +29,7 @@ router.get('/setType/:type', ensureAuthenticated, UsersController.users_get_setT
 // Set User Info
 router.post('/userInfo', UsersController.users_post_userInfo);
 
+// Verify User
+router.post('/verifyUser', UsersController.users_post_verifyUser);
+
 module.exports = router;
