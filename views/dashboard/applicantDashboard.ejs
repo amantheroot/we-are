@@ -2,8 +2,8 @@
 <p class="lead mb-3">Welcome Applicant <%= user.name %></p>
 <p class="lead mb-3" >User Info: <%= JSON.stringify(user.userInfo) %></p>
 <h2>Please upload a video resume</h2>
-<form action="users/uploadVideo" method="POST">
-  <input type="file" name="videoResume" accept="video/mp4">
+<form action="users/uploadVideo" enctype="multipart/form-data" method="POST">
+  <input type="file" name="videoResume" accept="video/*">
   <input type="submit">
 </form>
 <a href="/users/logout" class="btn btn-secondary">Logout</a>

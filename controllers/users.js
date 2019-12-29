@@ -171,8 +171,21 @@ exports.users_post_verifyUser = (req, res) => {
 
 // Upload Video
 exports.users_post_uploadVideo = (req, res) => {
-  console.log(req.file);
-  res.status(200).json({
-    message: "Success!"
-  });
+  // Set Video Path
+  let { userInfo } = req.user;
+  userInfo["videoResume"] = req.file.path;
+  let setProps = {
+    userInfo
+  }
+
+  //Update in DB
+  User.findByIdAndUpdate(req.user.id, { $set: setProps })
+    .exec()
+    .then(result => {
+      res.redirect('/dashboard');
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ error: err.message });
+    });
 };
