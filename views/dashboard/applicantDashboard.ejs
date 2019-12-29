@@ -1,4 +1,9 @@
 <h1 class="mt-4">Dashboard</h1>
 <p class="lead mb-3">Welcome Applicant <%= user.name %></p>
 <p class="lead mb-3" >User Info: <%= JSON.stringify(user.userInfo) %></p>
+<h2>Please upload a video resume</h2>
+<form action="users/uploadVideo" method="POST">
+  <input type="file" name="videoResume" accept="video/mp4">
+  <input type="submit">
+</form>
 <a href="/users/logout" class="btn btn-secondary">Logout</a>

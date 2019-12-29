@@ -1,5 +1,32 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './uploads');
+  },
+  filename: (req, file, cb) => {
+    cb(null, new Date().toISOString() + '--' + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  if (file.mimetype === 'video/mp4') {
+    cb(null, true);
+  } else {
+    cb(new Error('Unsupported File Type'), false);
+  }
+};
+
+const upload = multer({
+  storage,
+  limits: {
+    fileSize: 1024 * 1024 * 100
+  },
+  fileFilter
+ });
+
 // Load User model
 const { forwardAuthenticated, ensureAuthenticated } = require('../config/auth');
 
@@ -31,5 +58,8 @@ router.post('/userInfo', UsersController.users_post_userInfo);
 
 // Verify User
 router.post('/verifyUser', UsersController.users_post_verifyUser);
+
+// Upload Video Resume
+router.post('/uploadVideo', upload.single('videoResume'), UsersController.users_post_uploadVideo);
 
 module.exports = router;

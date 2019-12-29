@@ -168,3 +168,11 @@ exports.users_post_verifyUser = (req, res) => {
       })
   }
 };
+
+// Upload Video
+exports.users_post_uploadVideo = (req, res) => {
+  console.log(req.file);
+  res.status(200).json({
+    message: "Success!"
+  });
+};
