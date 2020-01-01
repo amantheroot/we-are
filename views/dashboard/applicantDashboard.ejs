@@ -1,18 +1,40 @@
-<h1 class="mt-4">Dashboard</h1>
-<p class="lead mb-3">Welcome Applicant <%= user.name %></p>
-<p class="lead mb-3" >User Info: <%= JSON.stringify(user.userInfo) %></p>
-<% if (user.userInfo.videoResume) { %>
-  <h2>Thank you for Uploading your resume!</h2>
-  <video width="320" height="240" controls>
-    <source src="<%= user.userInfo.videoResume %>" type="video/mp4">
-  </video>
-<% } else { %>
-  <div>
-    <h2>Please upload a video resume</h2>
-    <form action="users/uploadVideo" enctype="multipart/form-data" method="POST">
-      <input type="file" name="videoResume" accept="video/*">
-      <input type="submit">
-    </form>
-  </div>
-<% } %>
-<a href="/users/logout" class="btn btn-secondary">Logout</a>
+<h1 class="mt-4 mb-3">Dashboard</h1>
+<h1 class="lead mb-5">Welcome Applicant <%= user.name %></h1>
+<div class="jumbotron">
+  <h2 class="mb-3">User Info:</h2>
+  <ul class="list-group list-group-flush mb-5">
+    <% Object.keys(user.userInfo).filter(key => key !== "videoResume").forEach(key => { %>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-sm-2 text-capitalize font-weight-bold"><%= key %></div>
+          <div class="col-sm-10"><%= user.userInfo[key] %></div>
+        </div>
+      </li>
+    <% }) %>
+  </ul>
+  <% if (user.userInfo.videoResume) { %>
+    <h2 class="mb-3">Thank you for Uploading your resume!</h2>
+    <video width="100%" controls>
+      <source src="<%= user.userInfo.videoResume %>" type="video/mp4">
+    </video>
+  <% } else { %>
+    <div class="jumbotron bg-white">
+      <h2 class="mb-4">Please upload a video resume</h2 class="mb-3">
+      <form action="users/uploadVideo" enctype="multipart/form-data" method="POST">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="videoResumeAddon">Upload</span>
+          </div>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" name="videoResume" id="videoResume"
+              aria-describedby="videoResumeAddon">
+            <label class="custom-file-label" for="videoResume">Choose file</label>
+          </div>
+        </div>
+        <input class="btn btn-primary btn-lg mt-5" type="submit" value="Submit">
+      </form>
+    </div>
+  <% } %>
+  <div class="w-100"></div>
+  <a href="/users/logout" class="btn btn-danger btn-lg mt-5">Logout</a>
+</div>
