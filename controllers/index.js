@@ -1,3 +1,5 @@
+const User = require('../models/user');
+
 // Welcome Page
 exports.index_get_index = (req, res) => res.render('welcome');
 
@@ -19,9 +21,15 @@ exports.index_get_dashboard = (req, res) => {
         user: req.user
       });
     } else {
-      res.render('dashboard/employerDashboard', {
-        user: req.user
-      });
+      // Display Employer Dashboard
+      User.find({ type: 'applicant' }, { password: 0, _id: 0 })
+        .exec()
+        .then(applicants => {
+          res.render('dashboard/employerDashboard', {
+            user: req.user,
+            applicants
+          });
+        });
     }
   } else {
     res.render('dashboard/userTypeSelect', {

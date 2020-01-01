@@ -3,6 +3,9 @@
 <p class="lead mb-3" >User Info: <%= JSON.stringify(user.userInfo) %></p>
 <% if (user.userInfo.verified) { %>
   <p>YAY YOU'RE VERIFIED!</p>
+  <div>
+    <%= JSON.stringify(applicants) %>
+  </div>
 <% } else { %>
   <p>sorry you're not verified yet ;(</p>
 <% } %>
