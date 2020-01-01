@@ -1,28 +1,45 @@
 <h1>Applicant Form</h1>
+<br>
 <form action="users/userInfo" method="POST">
-  <div>
-    <label for="name">Name:</label>
-    <input type="text" name="name" id="name" value="<%= user.name %>" disabled>
+  <div class="form-group row">
+    <label for="name" class="col-sm-2 col-form-label">Name:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control-plaintext" name="name" id="name" value="<%= user.name %>">
+    </div>
   </div>
-  <div>
-    <label for="mobile">Mobile:</label>
-    <input type="text" name="mobile" id="mobile" pattern="[0-9]{10}" required>
+  <div class="form-group row">
+    <label for="mobile" class="col-sm-2 col-form-label">Mobile:</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="mobile" id="mobile" pattern="[0-9]{10}" required>
+    </div>
   </div>
-  <div>
-    <label for="address">Address:</label>
-    <textarea type="text" name="address" id="address" required></textarea>
+  <div class="form-group row">
+    <label for="address" class="col-sm-2 col-form-label">Address:</label>
+    <div class="col-sm-10">
+      <textarea type="text" class="form-control" name="address" id="address" required></textarea>
+    </div>
   </div>
-  <div>
-    <label for="education">Education:</label>
-    <textarea type="text" name="education" id="education" required></textarea>
+  <div class="form-group row">
+    <label for="education" class="col-sm-2 col-form-label">Education:</label>
+    <div class="col-sm-10">
+      <textarea type="text" class="form-control" name="education" id="education" required></textarea>
+    </div>
   </div>
-  <div>
-    <label for="skills">Skills:</label>
-    <textarea type="text" name="skills" id="skills" required></textarea>
+  <div class="form-group row">
+    <label for="skills" class="col-sm-2 col-form-label">Skills:</label>
+    <div class="col-sm-10">
+      <textarea type="text" class="form-control" name="skills" id="skills" required></textarea>
+    </div>
   </div>
-  <div>
-    <label for="about">About Yourself:</label>
-    <textarea type="text" name="about" id="about" required></textarea>
+  <div class="form-group row">
+    <label for="about" class="col-sm-2 col-form-label">About Yourself:</label>
+    <div class="col-sm-10">
+      <textarea type="text" class="form-control" name="about" id="about" required></textarea>
+    </div>
   </div>
-  <input type="submit" value="Submit">
+  <div class="form-group row">
+    <div class="col-sm-10">
+      <input class="btn btn-primary btn-lg" type="submit" value="Submit">
+    </div>
+  </div>
 </form>
