@@ -21,16 +21,8 @@
     <div class="jumbotron bg-white">
       <h2 class="mb-4">Please upload a video resume</h2 class="mb-3">
       <form action="users/uploadVideo" enctype="multipart/form-data" method="POST">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="videoResumeAddon">Upload</span>
-          </div>
-          <div class="custom-file">
-            <input type="file" class="custom-file-input" name="videoResume" id="videoResume"
-              aria-describedby="videoResumeAddon">
-            <label class="custom-file-label" for="videoResume">Choose file</label>
-          </div>
-        </div>
+        <input type="file" name="videoResume" id="videoResume">
+        <br>
         <input class="btn btn-primary btn-lg mt-5" type="submit" value="Submit">
       </form>
     </div>
